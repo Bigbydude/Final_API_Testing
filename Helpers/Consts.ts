@@ -9,5 +9,5 @@ export const statusPage = {
     successful: 200,
     create: 201,
     empty: 204,
-    error: 404
+    error: 404,
 };
