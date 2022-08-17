@@ -1,51 +1,51 @@
 import superagent from 'superagent';
-import { link } from '../Helpers/ConstUrl';
-import { setConfig, statusPage } from '../Helpers/Consts';
-import { expectedObj } from '../Helpers/ExpectedConst';
+import { LINK } from '../Helpers/ConstUrl';
+import { STATUS_PAGE, SET_CONFIG } from '../Helpers/Consts';
+import { EXPECTED_OBJ } from '../Helpers/ExpectedConst';
 
 describe('Negative Check API request', () => {
     test('negative test get', async () => {
-        const getPosts = await superagent.get(link.posts);
-        expect(getPosts.status).toBe(statusPage.empty);
+        const GET_POSTS = await superagent.get(LINK.POSTS);
+        expect(GET_POSTS.status).toBe(STATUS_PAGE.EMPTY);
     });
 
     test('negative test post', async () => {
-        const postUsers = await superagent
-            .post(link.users)
-            .set(setConfig.content, setConfig.application)
-            .send(expectedObj);
-        expect(postUsers.statusCode).toBe(statusPage.create);
-        expect(postUsers.body.email).toBe(expectedObj.username);
-        expect(postUsers.body.username).toBe(expectedObj.username);
+        const POST_USERS = await superagent
+            .post(LINK.USERS)
+            .set(SET_CONFIG.CONTENT, SET_CONFIG.APPLICATION)
+            .send(EXPECTED_OBJ);
+        expect(POST_USERS.statusCode).toBe(STATUS_PAGE.CREATE);
+        expect(POST_USERS.body.EMAIL).toBe(EXPECTED_OBJ.USERNAME);
+        expect(POST_USERS.body.username).toBe(EXPECTED_OBJ.USERNAME);
     });
 
     test('negative test put', async () => {
-        const putPosts = await superagent
-            .put(link.posts1)
-            .set(setConfig.content, setConfig.application)
-            .send(expectedObj);
-        expect(putPosts.statusCode).toBe(statusPage.successful);
-        expect(putPosts.body.email).toBe(expectedObj.username);
-        expect(putPosts.body.username).toBe(expectedObj.username);
+        const PUT_POSTS = await superagent
+            .put(LINK.POSTS1)
+            .set(SET_CONFIG.CONTENT, SET_CONFIG.APPLICATION)
+            .send(EXPECTED_OBJ);
+        expect(PUT_POSTS.statusCode).toBe(STATUS_PAGE.SUCCESSFUL);
+        expect(PUT_POSTS.body.EMAIL).toBe(EXPECTED_OBJ.USERNAME);
+        expect(PUT_POSTS.body.username).toBe(EXPECTED_OBJ.USERNAME);
     });
 
     test('negative test delete', async () => {
-        const deleteComm = await superagent.delete(link.comments);
-        expect(deleteComm.statusCode).toBe(statusPage.error);
+        const DELETE_COMM = await superagent.delete(LINK.COMMENTS);
+        expect(DELETE_COMM.statusCode).toBe(STATUS_PAGE.ERROR);
     });
 
     test('negative test path', async () => {
-        const pathComm = await superagent
-            .patch(link.comments)
-            .set(setConfig.content, setConfig.application)
-            .send(expectedObj);
-        expect(pathComm.statusCode).toBe(statusPage.successful);
-        expect(pathComm.body.body).toBe(expectedObj.email);
-        expect(pathComm.body.username).toBe(expectedObj.username);
+        const PATH_COMM = await superagent
+            .patch(LINK.COMMENTS)
+            .set(SET_CONFIG.CONTENT, SET_CONFIG.APPLICATION)
+            .send(EXPECTED_OBJ);
+        expect(PATH_COMM.statusCode).toBe(STATUS_PAGE.SUCCESSFUL);
+        expect(PATH_COMM.body.body).toBe(EXPECTED_OBJ.EMAIL);
+        expect(PATH_COMM.body.username).toBe(EXPECTED_OBJ.USERNAME);
     });
 
     test('negative test head', async () => {
-        const usersRes = await superagent.head(link.users);
-        expect(usersRes.statusCode).toBe(statusPage.create);
+        const USERS_RES = await superagent.head(LINK.USERS);
+        expect(USERS_RES.statusCode).toBe(STATUS_PAGE.CREATE);
     });
 });

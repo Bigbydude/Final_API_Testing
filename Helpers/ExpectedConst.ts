@@ -1,5 +1,5 @@
-export const expectedObj = {
-    email: 'alexander_panko@gmail.com',
-    username: 'Alexander',
-    phoneNumber: 6676422,
+export const EXPECTED_OBJ = {
+    EMAIL: 'alexander_panko@gmail.com',
+    USERNAME: 'Alexander',
+    PHONE_NUMBER: 6676422,
 };

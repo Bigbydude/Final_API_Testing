@@ -1,56 +1,56 @@
 import superagent from 'superagent';
-import { link } from '../Helpers/ConstUrl';
-import { setConfig, statusPage } from '../Helpers/Consts';
-import { expectedObj } from '../Helpers/ExpectedConst';
+import { LINK } from '../Helpers/ConstUrl';
+import { SET_CONFIG, STATUS_PAGE } from '../Helpers/Consts';
+import { EXPECTED_OBJ } from '../Helpers/ExpectedConst';
 
 describe('Positive Check API request', () => {
     test('positive test get', async () => {
-        const getPosts = await superagent.get(link.posts);
-        expect(getPosts.status).toBe(statusPage.successful);
+        const GET_POSTS = await superagent.get(LINK.POSTS);
+        expect(GET_POSTS.status).toBe(STATUS_PAGE.SUCCESSFUL);
     });
 
     test('positive test post', async () => {
-        const postUsers = await superagent
-            .post(link.users)
-            .set(setConfig.content, setConfig.application)
-            .send(expectedObj);
-        console.log(postUsers.body);
-        expect(postUsers.statusCode).toBe(statusPage.create);
-        expect(postUsers.body.email).toBe(expectedObj.email);
-        expect(postUsers.body.username).toBe(expectedObj.username);
+        const POST_USERS = await superagent
+            .post(LINK.USERS)
+            .set(SET_CONFIG.CONTENT, SET_CONFIG.APPLICATION)
+            .send(EXPECTED_OBJ);
+        console.log(POST_USERS.body);
+        expect(POST_USERS.statusCode).toBe(STATUS_PAGE.CREATE);
+        expect(POST_USERS.body.EMAIL).toBe(EXPECTED_OBJ.EMAIL);
+        expect(POST_USERS.body.USERNAME).toBe(EXPECTED_OBJ.USERNAME);
     });
 
     test('positive test put', async () => {
-        const putPosts = await superagent
-            .put(link.posts1)
-            .set(setConfig.content, setConfig.application)
-            .send(expectedObj);
-        console.log(putPosts.body);
-        expect(putPosts.statusCode).toBe(statusPage.successful);
-        expect(putPosts.body.email).toBe(expectedObj.email);
-        expect(putPosts.body.username).toBe(expectedObj.username);
+        const PUT_POSTS = await superagent
+            .put(LINK.POSTS1)
+            .set(SET_CONFIG.CONTENT, SET_CONFIG.APPLICATION)
+            .send(EXPECTED_OBJ);
+        console.log(PUT_POSTS.body);
+        expect(PUT_POSTS.statusCode).toBe(STATUS_PAGE.SUCCESSFUL);
+        expect(PUT_POSTS.body.EMAIL).toBe(EXPECTED_OBJ.EMAIL);
+        expect(PUT_POSTS.body.USERNAME).toBe(EXPECTED_OBJ.USERNAME);
     });
 
     test('positive test delete', async () => {
-        const deleteComm = await superagent.delete(link.comments);
-        console.log(deleteComm.body);
-        expect(deleteComm.statusCode).toBe(statusPage.successful);
+        const DELETE_COMM = await superagent.delete(LINK.COMMENTS);
+        console.log(DELETE_COMM.body);
+        expect(DELETE_COMM.statusCode).toBe(STATUS_PAGE.SUCCESSFUL);
     });
 
     test('positive test path', async () => {
-        const pathComm = await superagent
-            .patch(link.comments)
-            .set(setConfig.content, setConfig.application)
-            .send(expectedObj);
-        console.log(pathComm.body);
-        expect(pathComm.statusCode).toBe(statusPage.successful);
-        expect(pathComm.body.email).toBe(expectedObj.email);
-        expect(pathComm.body.username).toBe(expectedObj.username);
+        const PATH_COMM = await superagent
+            .patch(LINK.COMMENTS)
+            .set(SET_CONFIG.CONTENT, SET_CONFIG.APPLICATION)
+            .send(EXPECTED_OBJ);
+        console.log(PATH_COMM.body);
+        expect(PATH_COMM.statusCode).toBe(STATUS_PAGE.SUCCESSFUL);
+        expect(PATH_COMM.body.EMAIL).toBe(EXPECTED_OBJ.EMAIL);
+        expect(PATH_COMM.body.USERNAME).toBe(EXPECTED_OBJ.USERNAME);
     });
 
     test('positive test head', async () => {
-        const usersRes = await superagent.head(link.users);
-        console.log(usersRes.body);
-        expect(usersRes.statusCode).toBe(statusPage.successful);
+        const USERS_RES = await superagent.head(LINK.USERS);
+        console.log(USERS_RES.body);
+        expect(USERS_RES.statusCode).toBe(STATUS_PAGE.SUCCESSFUL);
     });
 });
